@@ -8,6 +8,7 @@ RUN apt-get install -y openssh-server curl openjdk-7-jdk
 RUN mkdir /var/run/sshd
 RUN adduser --quiet jenkins
 RUN sudo -u jenkins mkdir /home/jenkins/.ssh
+RUN sudo -u jenkins mkdir /home/jenkins/workspace
 COPY key.pub /home/jenkins/.ssh/authorized_keys
 
 # Install RVM
@@ -20,6 +21,9 @@ RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.30.1/install.sh
 # Install AWS cli
 RUN apt-get install -y python-pip
 RUN pip install awscli
+
+# Install git
+RUN apt-get install -y git
 
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
