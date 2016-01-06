@@ -4,7 +4,7 @@ MAINTAINER Gregory Doran <greg@gregorydoran.co.uk>
 
 # Install general stuff
 RUN apt-get update
-RUN apt-get install -y openssh-server curl openjdk-6-jdk
+RUN apt-get install -y openssh-server curl openjdk-7-jdk
 RUN mkdir /var/run/sshd
 RUN adduser --quiet jenkins
 RUN sudo -u jenkins mkdir /home/jenkins/.ssh
