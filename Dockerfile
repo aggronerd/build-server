@@ -1,3 +1,4 @@
+# Base on latest LTS
 FROM ubuntu:14.04
 
 # Install general stuff
