@@ -40,5 +40,9 @@ RUN wget https://releases.hashicorp.com/packer/0.8.6/packer_0.8.6_linux_amd64.zi
 # General building tools
 RUN apt-get install -y libxml2-dev libxslt1-dev zlib1g-dev libmysqlclient-dev libsqlite3-dev libgmp-dev
 
+# Copy SSH config
+COPY ssh_config /home/jenkins/.ssh/config
+RUN chown jenkins:jenkins /home/jenkins/.ssh/*
+
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
