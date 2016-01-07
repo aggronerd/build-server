@@ -4,7 +4,7 @@ MAINTAINER Gregory Doran <greg@gregorydoran.co.uk>
 
 # Install general stuff
 RUN apt-get update
-RUN apt-get install -y openssh-server curl openjdk-7-jdk
+RUN apt-get install -y openssh-server curl openjdk-7-jdk unzip
 RUN mkdir /var/run/sshd
 RUN adduser --quiet jenkins
 RUN sudo -u jenkins mkdir /home/jenkins/.ssh
@@ -18,7 +18,14 @@ RUN echo "jenkins ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 RUN sudo -u jenkins bash -c "HOME=/home/jenkins gpg --keyserver keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3; curl -sSL https://get.rvm.io | HOME=/home/jenkins bash -s stable"
 
 # Install NodeJS
-RUN apt-get install -y nodejs 
+RUN curl -sL https://deb.nodesource.com/setup_4.x | bash -
+RUN apt-get install -y nodejs
+
+# Install bower
+RUN npm install -g bower
+
+# Install grunt
+RUN npm install -g grunt-cli
 
 # Install AWS cli
 RUN apt-get install -y python-pip
@@ -26,6 +33,9 @@ RUN pip install awscli
 
 # Install git
 RUN apt-get install -y git
+
+# Install packer
+RUN wget https://releases.hashicorp.com/packer/0.8.6/packer_0.8.6_linux_amd64.zip -O temp.zip && unzip -d /usr/bin temp.zip && rm temp.zip
 
 # General building tools
 RUN apt-get install -y libxml2-dev libxslt1-dev zlib1g-dev libmysqlclient-dev libsqlite3-dev libgmp-dev
