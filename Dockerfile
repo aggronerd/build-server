@@ -10,6 +10,7 @@ RUN adduser --quiet jenkins
 RUN sudo -u jenkins mkdir /home/jenkins/.ssh
 RUN sudo -u jenkins mkdir /home/jenkins/workspace
 COPY key.pub /home/jenkins/.ssh/authorized_keys
+COPY entrypoint.sh /entrypoint.sh
 
 # Sudo for Jenkins
 RUN echo "jenkins ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
@@ -42,7 +43,8 @@ RUN apt-get install -y libxml2-dev libxslt1-dev zlib1g-dev libmysqlclient-dev li
 
 # Copy SSH config
 COPY ssh_config /home/jenkins/.ssh/config
+COPY ssh_known_hosts /home/jenkins/.ssh/known_hosts
 RUN chown jenkins:jenkins /home/jenkins/.ssh/*
 
 EXPOSE 22
-CMD ["/usr/sbin/sshd", "-D"]
+CMD ["/entrypoint.sh"]
