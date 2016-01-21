@@ -41,6 +41,9 @@ RUN wget https://releases.hashicorp.com/packer/0.8.6/packer_0.8.6_linux_amd64.zi
 # General building tools
 RUN apt-get install -y libxml2-dev libxslt1-dev zlib1g-dev libmysqlclient-dev libsqlite3-dev libgmp-dev
 
+# Install PhantomJS
+RUN apt-get install -y phantomjs
+
 # Copy SSH config
 COPY ssh_config /home/jenkins/.ssh/config
 COPY ssh_known_hosts /home/jenkins/.ssh/known_hosts
