@@ -44,6 +44,9 @@ RUN apt-get install -y libxml2-dev libxslt1-dev zlib1g-dev libmysqlclient-dev li
 # Install PhantomJS
 RUN apt-get install -y phantomjs
 
+# Install postgres client
+RUN apt-get install -y postgresql-client libpq-dev
+
 # Copy SSH config
 COPY ssh_config /home/jenkins/.ssh/config
 COPY ssh_known_hosts /home/jenkins/.ssh/known_hosts
