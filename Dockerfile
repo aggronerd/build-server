@@ -36,7 +36,7 @@ RUN pip install awscli
 RUN apt-get install -y git
 
 # Install packer
-RUN wget https://releases.hashicorp.com/packer/0.8.6/packer_0.8.6_linux_amd64.zip -O temp.zip && unzip -d /usr/bin temp.zip && rm temp.zip
+RUN wget https://releases.hashicorp.com/packer/0.10.0/packer_0.10.0_linux_amd64.zip -O temp.zip && unzip -d /usr/bin temp.zip && rm temp.zip
 
 # General building tools
 RUN apt-get install -y libxml2-dev libxslt1-dev zlib1g-dev libmysqlclient-dev libsqlite3-dev libgmp-dev
