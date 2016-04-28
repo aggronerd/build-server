@@ -50,6 +50,12 @@ RUN apt-get install -y postgresql-client libpq-dev
 # Install mysql client
 RUN apt-get install -y mysql-client
 
+# Install python
+RUN apt-get install -y python python-pip
+
+# Install boto
+RUN pip install boto3
+
 # Copy SSH config
 COPY ssh_config /home/jenkins/.ssh/config
 COPY ssh_known_hosts /home/jenkins/.ssh/known_hosts
